@@ -41,3 +41,8 @@ body {
     display: block;
   }
 }
+.nav a.active {
+  font-weight: bold;
+  color: cyan;
+  border-bottom: 2px solid cyan;
+}
