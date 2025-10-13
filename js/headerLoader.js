@@ -16,4 +16,4 @@ fetch('header.html')
       }
     });
   })
-  .catch(err => console.error('Ошибка загрузки шапки:', err));
+  .catch(err => console.error('Помилка завантаження шапки:', err));
