@@ -1,7 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: Arial, Sans-Serif;
+  font-family: Arial, sans-serif;
   color: darkblue;
+  background: #f8f9fa;
 }
 
 .header {
@@ -9,6 +14,8 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+  margin: 10px;
+  border-radius: 10px;
   background: darkblue;
   color: white;
 }
@@ -17,6 +24,12 @@ body {
   color: white;
   text-decoration: none;
   margin: 0 10px;
+}
+
+.nav a.active {
+  font-weight: bold;
+  color: cyan;
+  border-bottom: 2px solid cyan;
 }
 
 .burger {
@@ -29,7 +42,7 @@ body {
   .nav {
     display: none;
     flex-direction: column;
-    background: darkbue;
+    background: darkblue;
     width: 100%;
   }
 
@@ -41,8 +54,48 @@ body {
     display: block;
   }
 }
-.nav a.active {
-  font-weight: bold;
-  color: cyan;
-  border-bottom: 2px solid cyan;
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background: linear-gradient(135deg, #f0f8ff, #e0ffff);
 }
+
+.page-content {
+  background: white;
+  padding: 40px;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.resume-btn {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: darkblue;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.resume-btn:hover {
+  background: #0077ff;
+  transform: scale(1.05);
+}
+
+.footer {
+  background: darkblue;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
