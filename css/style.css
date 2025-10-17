@@ -131,6 +131,79 @@ body {
   padding-bottom: 5px;
   margin-bottom: 10px;
 }
+.feedback-section {
+  max-width: 600px;
+  margin: 40px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.feedback-section h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: darkblue;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input[type="text"],
+textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+button[type="submit"] {
+  padding: 12px;
+  background: darkblue;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+button[type="submit"]:hover {
+  background: #0077ff;
+  transform: scale(1.05);
+}
+
+#feedbackContainer {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.feedback-item {
+  background: #f7f9ff;
+  border-left: 5px solid darkblue;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.feedback-item strong {
+  color: darkblue;
+}
+.feedback-item p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
 
 
 
