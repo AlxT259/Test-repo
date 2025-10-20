@@ -4,7 +4,7 @@ fetch('footer.html')
     document.body.insertAdjacentHTML('beforeend', html);
     
     const radio = new Audio();
-    radio.src = 'http://94.130.113.214:8000/schizoid';
+    radio.src = 'https://www.partyvibe.com:8062/;listen.pls?sid=1';
     radio.preload = 'none';
 
     const status = document.getElementById('radio-status');
@@ -14,7 +14,7 @@ fetch('footer.html')
 
     playBtn.addEventListener('click', function() {
         radio.play().then(() => {
-            status.textContent = 'Слухаємо Radio Schizoid...';
+            status.textContent = 'Слухаємо Party Vibe PsyTrance 🎧';
             status.style.color = '#4ecdc4';
         }).catch(error => {
             status.textContent = 'Помилка відтворення';
@@ -37,7 +37,7 @@ fetch('footer.html')
     });
 
     radio.addEventListener('playing', () => {
-        status.textContent = 'Слухаємо Radio Schizoid...';
+        status.textContent = 'Слухаємо Party Vibe PsyTrance 🎧';
         status.style.color = '#4ecdc4';
     });
 

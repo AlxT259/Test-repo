@@ -195,6 +195,15 @@ button[type="submit"]:hover {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+
+.feedback-item strong {
+  color: darkblue;
+}
+.feedback-item p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
 .radio-player {
   background: white;
   padding: 20px;
@@ -207,13 +216,6 @@ button[type="submit"]:hover {
 
 .radio-info {
   margin-bottom: 15px;
-}
-
-.radio-title {
-  font-size: 18px;
-  font-weight: bold;
-  color: darkblue;
-  margin-bottom: 5px;
 }
 
 .radio-subtitle {
@@ -230,24 +232,27 @@ button[type="submit"]:hover {
 .controls {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 15px;
   margin: 15px 0;
 }
 
 .play-btn, .pause-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: darkblue;
   border: none;
   border-radius: 50%;
   width: 50px;
   height: 50px;
   color: white;
-  font-size: 16px;
+  font-size: 20px;
+  line-height: 1;
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
 }
-.pause-btn {
-  font-style: bold;
-}
+
 .play-btn:hover, .pause-btn:hover {
   background: #0077ff;
   transform: scale(1.05);
@@ -270,18 +275,6 @@ button[type="submit"]:hover {
   accent-color: darkblue;
 }
 
-
-
-
-
-.feedback-item strong {
-  color: darkblue;
-}
-.feedback-item p {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  word-break: break-word;
-}
 
 
 
