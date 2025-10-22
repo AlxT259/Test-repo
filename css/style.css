@@ -167,7 +167,7 @@ body {
   margin: 15px 0;
 }
 
-.play-btn, .pause-btn {
+.playpause-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -183,10 +183,11 @@ body {
   transition: background 0.3s, transform 0.2s;
 }
 
-.play-btn:hover, .pause-btn:hover {
+.playpause-btn:hover {
   background: #0077ff;
   transform: scale(1.05);
 }
+
 
 .volume-control {
   width: 100%;
@@ -309,11 +310,7 @@ body {
     padding: 20px;
     margin: 12px;
   }
-  .chat-section {
-    margin: 12px;
-    padding: 14px;
-    height: 420px;
-  }
+
   .chat-input-area {
     flex-direction: column;
     align-items: stretch;
