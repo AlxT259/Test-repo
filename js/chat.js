@@ -1,17 +1,13 @@
-// js/chat.js
 (function () {
   function initChat() {
     const messagesContainer = document.getElementById('chatMessages');
     const input = document.getElementById('chatInput');
-    const sendBtn = document.getElementById('sendBtn');
+    const sendBtn = document.getElementById('chatSend');
 
     if (!messagesContainer || !input || !sendBtn) return;
 
-    // Загрузка сохранённых сообщений
-    const savedMessages = JSON.parse(localStorage.getItem('chatMessages') || '[]');
-    savedMessages.forEach(msg => renderMessage(msg.text, msg.sender));
+    const socket = io('https://chat-server-tsfk.onrender.com');
 
-    // Обработчики
     sendBtn.addEventListener('click', sendMessage);
     input.addEventListener('keydown', e => {
       if (e.key === 'Enter' && !e.shiftKey) {
@@ -23,43 +19,22 @@
     function sendMessage() {
       const text = input.value.trim();
       if (!text) return;
-      renderMessage(text, 'user');
-      saveMessage(text, 'user');
+      const payload = { text, ts: Date.now() }; // формируем объект
+      socket.emit('chatMessage', payload);
       input.value = '';
       input.focus();
-
-      // Имитируем ответ (для теста)
-      setTimeout(() => {
-        const reply = getBotReply(text);
-        renderMessage(reply, 'bot');
-        saveMessage(reply, 'bot');
-      }, 700);
     }
 
-    function renderMessage(text, sender) {
+    socket.on('chatMessage', payload => {
+      renderMessage(payload);
+    });
+
+    function renderMessage(payload) {
       const div = document.createElement('div');
-      div.className = 'chat-message ' + sender;
-      div.textContent = text;
+      div.className = 'chat-message user'; // можно менять на 'bot', если нужно
+      div.textContent = payload.text; // берём текст из объекта
       messagesContainer.appendChild(div);
-      // плавный автоскролл
       messagesContainer.scrollTo({ top: messagesContainer.scrollHeight, behavior: 'smooth' });
-    }
-
-    function saveMessage(text, sender) {
-      const messages = JSON.parse(localStorage.getItem('chatMessages') || '[]');
-      messages.push({ text, sender, ts: Date.now() });
-      localStorage.setItem('chatMessages', JSON.stringify(messages));
-    }
-
-    function getBotReply(userText) {
-      const responses = [
-        'Дякую за повідомлення! 💙',
-        'Цікаво! Розкажи більше 😊',
-        'Я це запам’ятаю 👀',
-        'О, це звучить круто! 🚀',
-        'Можу допомогти ще чимось?'
-      ];
-      return responses[Math.floor(Math.random() * responses.length)];
     }
   }
 
