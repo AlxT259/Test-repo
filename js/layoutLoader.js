@@ -44,67 +44,66 @@ class LayoutManager {
         this.updateActiveLink();
     }
 
-  initializeRadio() {
-    if (this.isRadioInitialized) return;
-    this.radio = new Audio();
-    this.radio.src = 'https://www.partyvibe.com:8062/;listen.pls?sid=1';
-    this.radio.preload = 'none';
-    const status = document.getElementById('radio-status');
-    const playPauseBtn = document.querySelector('.playpause-btn');
-    const volumeControl = document.getElementById('radio-volume');
-    const savedVolume = localStorage.getItem('radioVolume');
-    if (savedVolume) {
-        this.radio.volume = savedVolume;
-        volumeControl.value = savedVolume;
-    }
-    const savedPlaying = localStorage.getItem('radioPlaying');
-    if (savedPlaying === 'true') {
-        this.radio.play().catch(console.error);
-        playPauseBtn.textContent = '❚❚'; // Изменим иконку на паузу
-    }
-    
-    playPauseBtn.addEventListener('click', () => {
-        if (this.radio.paused) {
-            this.radio.play().then(() => {
-                status.textContent = 'Слухаємо Party Vibe PsyTrance 🎧';
-                status.style.color = '#4ecdc4';
-                localStorage.setItem('radioPlaying', 'true');
-                playPauseBtn.textContent = '❚❚'; // Пауза
-            }).catch(error => {
-                status.textContent = 'Помилка відтворення';
-                status.style.color = '#ff6b6b';
-            });
-        } else {
-            this.radio.pause();
-            status.textContent = 'Пауза';
-            status.style.color = 'white';
-            localStorage.setItem('radioPlaying', 'false');
-            playPauseBtn.textContent = '▶'; // Воспроизведение
+    initializeRadio() {
+        if (this.isRadioInitialized) return;
+        this.radio = new Audio();
+        this.radio.src = 'https://www.partyvibe.com:8062/;listen.pls?sid=1';
+        this.radio.preload = 'none';
+        const status = document.getElementById('radio-status');
+        const playPauseBtn = document.querySelector('.playpause-btn');
+        const volumeControl = document.getElementById('radio-volume');
+        const savedVolume = localStorage.getItem('radioVolume');
+        if (savedVolume) {
+            this.radio.volume = savedVolume;
+            volumeControl.value = savedVolume;
         }
-    });
+        const savedPlaying = localStorage.getItem('radioPlaying');
+        if (savedPlaying === 'true') {
+            this.radio.play().catch(console.error);
+            playPauseBtn.textContent = '❚❚';
+        }
 
-    volumeControl.addEventListener('input', () => {
-        this.radio.volume = volumeControl.value;
-        localStorage.setItem('radioVolume', volumeControl.value);
-    });
+        playPauseBtn.addEventListener('click', () => {
+            if (this.radio.paused) {
+                this.radio.play().then(() => {
+                    status.textContent = 'Слухаємо Party Vibe PsyTrance 🎧';
+                    status.style.color = '#4ecdc4';
+                    localStorage.setItem('radioPlaying', 'true');
+                    playPauseBtn.textContent = '❚❚';
+                }).catch(() => {
+                    status.textContent = 'Помилка відтворення';
+                    status.style.color = '#ff6b6b';
+                });
+            } else {
+                this.radio.pause();
+                status.textContent = 'Пауза';
+                status.style.color = 'white';
+                localStorage.setItem('radioPlaying', 'false');
+                playPauseBtn.textContent = '▶';
+            }
+        });
 
-    this.radio.addEventListener('waiting', () => {
-        status.textContent = 'Буферизація...';
-    });
+        volumeControl.addEventListener('input', () => {
+            this.radio.volume = volumeControl.value;
+            localStorage.setItem('radioVolume', volumeControl.value);
+        });
 
-    this.radio.addEventListener('playing', () => {
-        status.textContent = 'Слухаємо Party Vibe PsyTrance 🎧';
-        status.style.color = '#4ecdc4';
-    });
+        this.radio.addEventListener('waiting', () => {
+            status.textContent = 'Буферизація...';
+        });
 
-    this.radio.addEventListener('error', () => {
-        status.textContent = 'Помилка підключення';
-        status.style.color = '#ff6b6b';
-    });
+        this.radio.addEventListener('playing', () => {
+            status.textContent = 'Слухаємо Party Vibe PsyTrance 🎧';
+            status.style.color = '#4ecdc4';
+        });
 
-    this.isRadioInitialized = true;
-}
+        this.radio.addEventListener('error', () => {
+            status.textContent = 'Помилка підключення';
+            status.style.color = '#ff6b6b';
+        });
 
+        this.isRadioInitialized = true;
+    }
 
     async loadContent(page, updateHistory = true) {
         if (page === this.currentPage && !this.isFirstLoad) return;
@@ -126,6 +125,9 @@ class LayoutManager {
                 if (updateHistory) history.pushState({ page }, '', page);
                 this.updateActiveLink();
                 this.runPageScripts(doc);
+                if (page === 'chat.html' && window.initChat) {
+                    window.initChat();
+                }
             }
         } catch (err) {
             console.error('Помилка завантаження контенту:', err);
