@@ -10,19 +10,18 @@
   <main id="content" class="page-content">
       <h1>Чат</h1>
 
-      <div class="chat-messages" id="chatMessages">
-        <div class="chat-message bot">👋 Привіт! Напиши мені повідомлення, і я відповім, щойно зможу.</div>
-      </div>
-
       <div class="chat-input-area">
         <input type="text" id="chatInput" placeholder="Введіть повідомлення..." autocomplete="off" />
         <button id="chatSend" type="button">Надіслати</button>
       </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-message bot">👋 Привіт! Напиши мені повідомлення, і я відповім, щойно зможу.</div>
+      </div>
   </main>
 
-  <script src="js/layoutLoader.js"></script>
   <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/layoutLoader.js"></script>
 </body>
 </html>
-
-
